@@ -43,14 +43,14 @@ class code {
  	
  	//图片和logo 合并
  	public function downLoadQrcode(){
+
  		$this->file_name = __DIR__.'/'.time().'.png';
- 		
+
  		//保存二维码到本地，目标图像
  		QRcode::png($this->text,$this->file_name,$this->level, $this->size, 2); 
  		$qrcode = imagecreatefromstring(file_get_contents($this->file_name));
  		$qr['width'] = imagesx($qrcode);//宽
  		$qr['height'] = imagesy($qrcode);//高
- 		//var_dump($qr);
 
  		//读取logo 的长宽,源图像
  		$logoo = imagecreatefromstring(file_get_contents($this->logo));
@@ -83,5 +83,7 @@ class code {
  	}
 }
 $text = isset($_GET['text']) ? $_GET['text'] : '没东西啊';
+
 $a = new code($text);
+
 $a->downLoadQrcode();
